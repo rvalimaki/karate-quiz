@@ -1,0 +1,103 @@
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.term-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.kanji {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.furigana {
+  font-size: 24px;
+}
+
+.romanji {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+}
+
+input[type="text"] {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+button {
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.result {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+.translation {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.english {
+  font-weight: bold;
+}
+
+.finnish {
+  font-weight: bold;
+  color: blue;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.score {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.error-count {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}

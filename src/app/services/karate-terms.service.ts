@@ -1,0 +1,95 @@
+// noinspection SpellCheckingInspection
+
+import { Injectable } from '@angular/core';
+import { KarateTerm } from '../models/karate-term.model';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class KarateTermsService {
+    private karateTerms: KarateTerm[] = [
+        { kanji: '上げ', furigana: 'あげ', romanji: 'age', english: 'Rising', finnish: 'nouseva', audioFile: '1.mp3' },
+        { kanji: '上げ受け', furigana: 'あげうけ', romanji: 'age-uke', english: 'Rising block', finnish: 'nouseva torjunta', audioFile: '2.mp3' },
+        { kanji: '足', furigana: 'あし', romanji: 'ashi', english: 'Foot/Leg', finnish: 'jalka', audioFile: '3.mp3' },
+        { kanji: '合わせ', furigana: 'あわせ', romanji: 'awase', english: 'matching or "combining"', finnish: '', audioFile: '4.mp3' },
+        { kanji: '払い', furigana: 'ばらい', romanji: 'barai', english: 'sweep', finnish: 'pyyhkäisy', audioFile: '5.mp3' },
+        { kanji: '中段', furigana: 'ちゅうだん', romanji: 'chudan', english: 'middle level', finnish: 'keskitaso, rinta-vatsa-alue', audioFile: '6.mp3' },
+        { kanji: '大体', furigana: 'だいたい', romanji: 'daitai', english: 'Body', finnish: 'keho', audioFile: '7.mp3' },
+        { kanji: '不動立ち', furigana: 'ふどうだち', romanji: 'fudo-dachi', english: 'Immobile stance', finnish: 'fudo-dachi, liikkumaton asento', audioFile: '8.mp3' },
+        { kanji: '振り肘', furigana: 'ふりえんぴ', romanji: 'furi-empi', english: 'Back elbow strike', finnish: 'kyynärpäälyönti taakse', audioFile: '9.mp3' },
+        { kanji: '逆半身', furigana: 'ぎゃくはんみ', romanji: 'gyaku-hamni', english: 'Reverse half-body', finnish: 'vastakkainen kylki, vastakkainen kylki edessä', audioFile: '10.mp3' },
+        { kanji: '逆突き', furigana: 'ぎゃくづき', romanji: 'gyaku-zuki', english: 'reverse punch', finnish: 'gyaku-zuki, vastakäden lyönti', audioFile: '11.mp3' },
+        { kanji: '八字立ち', furigana: 'はちじだち', romanji: 'hachijidachi', english: 'H stance', finnish: 'luonnollinen asento, valmiusasento', audioFile: '12.mp3' },
+        { kanji: '肘', furigana: 'はいわん', romanji: 'haiwan', english: 'Elbow', finnish: 'kyynärpää', audioFile: '13.mp3' },
+        { kanji: '半身', furigana: 'はんみ', romanji: 'hamni', english: 'Half-body', finnish: 'kylki, kylkiasento', audioFile: '14.mp3' },
+        { kanji: '平行足立ち', furigana: 'へいこうあしだち', romanji: 'heisoku-dachi', english: 'Parallel stance', finnish: 'jalat yhdessä -asento', audioFile: '15.mp3' },
+        { kanji: '左', furigana: 'ひだり', romanji: 'hidari', english: 'left', finnish: 'vasen', audioFile: '16.mp3' },
+        { kanji: '左肩', furigana: 'ひだりかた', romanji: 'hidari-kata', english: 'left shoulder', finnish: 'vasen olkapää', audioFile: '17.mp3' },
+        { kanji: '額', furigana: 'ひたい', romanji: 'hitai', english: 'Forehead', finnish: 'otsa', audioFile: '18.mp3' },
+        { kanji: '膝', furigana: 'ひざ', romanji: 'hiza', english: 'Knee', finnish: 'polvi', audioFile: '19.mp3' },
+        { kanji: '膝屈', furigana: 'ひざくつ', romanji: 'hiza-kutsu', english: 'Knee bend stance', finnish: 'polvi taivutettuna', audioFile: '20.mp3' },
+        { kanji: '膝裏', furigana: 'ひざうら', romanji: 'hiza-ura', english: 'Back of knee', finnish: 'polven takapuoli, polvikuoppa', audioFile: '21.mp3' },
+        { kanji: '軸', furigana: 'じく', romanji: 'jiku', english: 'Axis', finnish: 'akseli', audioFile: '22.mp3' },
+        { kanji: '上段', furigana: 'じょうだん', romanji: 'jodan', english: 'upper level', finnish: 'ylätaso, ylä-', audioFile: '23.mp3' },
+        { kanji: '十字', furigana: 'じゅうじ', romanji: 'juji', english: 'cross', finnish: 'risti, ristissä, "kymmenen merkkiä"', audioFile: '24.mp3' },
+        { kanji: '開掌', furigana: 'かいしょう', romanji: 'kaisho', english: 'open hand', finnish: 'avokämmen', audioFile: '25.mp3' },
+        { kanji: '掻き分け', furigana: 'かきわけ', romanji: 'kakiwake', english: 'Hooking block', finnish: 'koukkutorjunta', audioFile: '26.mp3' },
+        { kanji: '構え', furigana: 'かまえ', romanji: 'kamae', english: 'Stance', finnish: 'asento, otteluasento', audioFile: '27.mp3' },
+        { kanji: '拳槌', furigana: 'けんつい', romanji: 'kentsui', english: 'Hammer fist', finnish: 'vasaralyönti, vasaranyrkki', audioFile: '28.mp3' },
+        { kanji: '気合い', furigana: 'きあい', romanji: 'kiai', english: 'Shout of spirit', finnish: 'kiai, huuto, "voiman harmonia"', audioFile: '29.mp3' },
+        { kanji: '木馬立ち', furigana: 'きばだち', romanji: 'kiba-dachi', english: 'Straddle-leg stance', finnish: 'ratsastusasento, kiba-dachi', audioFile: '30.mp3' },
+        { kanji: '国', furigana: 'こ', romanji: 'ko', english: 'back or behind', finnish: 'takana', audioFile: '31.mp3' },
+        { kanji: '足', furigana: 'くつ', romanji: 'kutsu', english: 'bent or flexed', finnish: 'taivutettu', audioFile: '32.mp3' },
+        { kanji: '国足立ち', furigana: 'こくつだち', romanji: 'kokutsu-dachi', english: 'back stance', finnish: 'taka-asento, "taka-jalan taivutusasento"', audioFile: '33.mp3' },
+        { kanji: '交差', furigana: 'こうさ', romanji: 'kosa', english: 'cross', finnish: 'risti, ristissä, x-asento', audioFile: '34.mp3' },
+        { kanji: '腰', furigana: 'こし', romanji: 'koshi', english: 'Hip', finnish: 'lantio', audioFile: '35.mp3' },
+        { kanji: '前', furigana: 'まえ', romanji: 'mae', english: 'Front', finnish: 'etu-, etupuoli', audioFile: '36.mp3' },
+        { kanji: '回し', furigana: 'まわし', romanji: 'mawashi', english: 'Roundhouse', finnish: 'pyörähtävä,kierto-', audioFile: '37.mp3' },
+        { kanji: '右', furigana: 'みぎ', romanji: 'migi', english: 'right', finnish: 'oikea', audioFile: '38.mp3' },
+        { kanji: '右肩', furigana: 'みぎかた', romanji: 'migi-kata', english: 'Right shoulder', finnish: 'oikea olkapää', audioFile: '39.mp3' },
+        { kanji: '両手', furigana: 'もろて', romanji: 'morote', english: 'Both hands', finnish: 'molemmat kädet', audioFile: '40.mp3' },
+        { kanji: '両手受け', furigana: 'もろてうけ', romanji: 'morote-uke', english: 'Double-handed block', finnish: 'kahden kähden torjunta', audioFile: '41.mp3' },
+        { kanji: '胸前', furigana: 'むねまえ', romanji: 'mune-mae', english: 'in front of the chest', finnish: 'rinnan edessä, kädet rinnan edessä', audioFile: '42.mp3' },
+        { kanji: '結び立ち', furigana: 'むすびだち', romanji: 'musubi-dachi', english: 'Attention stance', finnish: 'huomioasento, kumarrusasento', audioFile: '43.mp3' },
+        { kanji: '直れ', furigana: 'なおれ', romanji: 'naore', english: 'Return to ready position', finnish: 'paluu valmiusasentoon', audioFile: '44.mp3' },
+        { kanji: '二段蹴り', furigana: 'にだんげり', romanji: 'nidan-geri', english: 'Two-level kick', finnish: 'kaksoispotku, tuplapotku, tuplaetupotku, hyppypotku tupla-maigerilla', audioFile: '45.mp3' },
+        { kanji: '貫手', furigana: 'ぬきて', romanji: 'nukite', english: 'Spearhand', finnish: 'nukite, seiväskäsi, keihäskäsi, sormilyönti', audioFile: '46.mp3' },
+        { kanji: '追い突き', furigana: 'おいづき', romanji: 'oizuki', english: 'Lunge punch', finnish: 'etukäden lyönti askeleella', audioFile: '47.mp3' },
+        { kanji: '折敷き', furigana: 'おりしき', romanji: 'orishiki', english: 'Folding block', finnish: '', audioFile: '48.mp3' },
+        { kanji: '押さえ', furigana: 'おさえ', romanji: 'osae', english: 'press or "push down"', finnish: '', audioFile: '49.mp3' },
+        { kanji: '両側', furigana: 'りょうがわ', romanji: 'ryōgawa', english: 'Both sides', finnish: 'molemmat sivut', audioFile: '50.mp3' },
+        { kanji: '両拳', furigana: 'りょうけん', romanji: 'ryōken', english: 'Both fists', finnish: 'molemmat nyrkit', audioFile: '51.mp3' },
+        { kanji: '両向き', furigana: 'りょうこうき', romanji: 'ryoko', english: 'both directions', finnish: 'molemmat suunnat', audioFile: '52.mp3' },
+        { kanji: '両掌', furigana: 'りょうしょう', romanji: 'ryosho', english: 'both palms', finnish: 'molemmat kämmenet', audioFile: '53.mp3' },
+        { kanji: '逆拳', furigana: 'さけん', romanji: 'saken', english: 'left fist', finnish: 'vasen nyrkki', audioFile: '54.mp3' },
+        { kanji: '左右', furigana: 'さしょ', romanji: 'sasho', english: 'Left and right', finnish: 'vasen kämmen', audioFile: '55.mp3' },
+        { kanji: '四方貫手', furigana: 'しほんぬきて', romanji: 'shihon-nukite', english: 'Four-directions spearhand', finnish: 'neljän sormen keihäskäsi, neljän sormen lyönti', audioFile: '56.mp3' },
+        { kanji: '側面', furigana: 'そくめん', romanji: 'sokumen', english: 'side', finnish: 'sivu', audioFile: '57.mp3' },
+        { kanji: '外刀', furigana: 'そくと', romanji: 'sokuto', english: 'Knife edge of the foot', finnish: 'jalan ulkosyrjä, "puukkojalka"', audioFile: '58.mp3' },
+        { kanji: '外', furigana: 'そと', romanji: 'soto', english: 'Outside', finnish: 'ulkopuoli, ulkopuolelta', audioFile: '59.mp3' },
+        { kanji: '外回し打ち', furigana: 'そとまわしうち', romanji: 'soto-mawashi-uchi', english: 'Outside roundhouse strike', finnish: '', audioFile: '60.mp3' },
+        { kanji: '水平', furigana: 'すいへい', romanji: 'suihei', english: 'Horizontal', finnish: 'vaakasuuntainen', audioFile: '61.mp3' },
+        { kanji: '縦', furigana: 'たて', romanji: 'tate', english: 'Vertical', finnish: 'pystysuuntainen', audioFile: '62.mp3' },
+        { kanji: '立て回し打ち', furigana: 'たてまわしうち', romanji: 'tate-mawashi-uchi', english: 'Vertical roundhouse punch', finnish: '', audioFile: '63.mp3' },
+        { kanji: '縦肘打ち', furigana: 'たてえんぴ', romanji: 'tate-empi', english: 'Vertical elbow strike', finnish: 'pystysuunnan kyynärpäälyönti', audioFile: '64.mp3' },
+        { kanji: '掴み', furigana: 'つかみ', romanji: 'tsukami', english: 'Grasping', finnish: 'tarttuminen, tiikerin suu', audioFile: '65.mp3' },
+        { kanji: '打ち', furigana: 'うち', romanji: 'uchi', english: 'Strike', finnish: 'lyönti, sisäpuoli', audioFile: '66.mp3' },
+        { kanji: '打ち受け', furigana: 'うちうけ', romanji: 'uchi-uke', english: 'Block and strike', finnish: 'torjunta sisältä ulos', audioFile: '67.mp3' },
+        { kanji: '上', furigana: 'うえ', romanji: 'ue', english: 'Up', finnish: 'ylös', audioFile: '68.mp3' },
+        { kanji: '受け', furigana: 'うけ', romanji: 'uke', english: 'block or "receive"', finnish: 'torjunta, vastaanotto', audioFile: '69.mp3' },
+        { kanji: '右拳', furigana: 'うけん', romanji: 'uken', english: 'right fist', finnish: 'oikea nyrkki', audioFile: '70.mp3' },
+        { kanji: '裏拳', furigana: 'うらけん', romanji: 'uraken', english: 'Back fist', finnish: 'nyrkin selkä, rystyslyönti', audioFile: '71.mp3' },
+        { kanji: '内掌打て', furigana: 'うしょうあて', romanji: 'usho-ate', english: 'Inward palm heel strike', finnish: 'kämmenlyönti sisäänpäin', audioFile: '72.mp3' },
+        { kanji: '横蹴上げ', furigana: 'よこげりけあげ', romanji: 'yoko-geri-keage', english: 'Side snap kick', finnish: 'napsahtava sivupotku', audioFile: '73.mp3' },
+        { kanji: '横回し打ち', furigana: 'よこまわしうち', romanji: 'yoko-mawashi-uchi', english: 'Roundhouse kick', finnish: 'kiertolyönti sivulle', audioFile: '74.mp3' },
+        { kanji: '寄足', furigana: 'よりあし', romanji: 'yoriashi', english: 'Sliding foot', finnish: 'liukuaskel', audioFile: '75.mp3' },
+        { kanji: '前屈立ち', furigana: 'ぜんくつだち', romanji: 'zenkutsu-dachi', english: 'Front stance', finnish: 'etuasento', audioFile: '76.mp3' },
+        { kanji: '前腕', furigana: 'ぜんわん', romanji: 'zenwan', english: 'Forearm', finnish: 'käsivarsi', audioFile: '77.mp3' },
+        { kanji: '突き', furigana: 'ずき', romanji: 'zuki', english: 'punch', finnish: 'lyönti', audioFile: '78.mp3' }
+    ];
+
+    getRandomTerm(): KarateTerm {
+        const index = Math.floor(Math.random() * this.karateTerms.length);
+        return this.karateTerms[index];
+    }
+}

@@ -1,0 +1,32 @@
+<div class="quiz-container" *ngIf="karateTerm">
+    <h1>Karate-kysely</h1>
+    <div class="term-container">
+        <div class="kanji">{{ karateTerm.kanji }}</div>
+        <div class="furigana">{{ karateTerm.furigana }}</div>
+        <div class="romanji">{{ karateTerm.romanji }}</div>
+
+        <div class="feedback-container" *ngIf="displayAnswer">
+                <span class="finnish">&nbsp;{{ karateTerm.finnish }}&nbsp;</span>
+                <span class="english">{{ karateTerm.english }}</span>
+        </div>
+
+        <audio controls [src]="'../../assets/audio/' + karateTerm.audioFile" autoplay>
+            Selaimesi ei tue ääntä, sorry!
+        </audio>
+    </div>
+    <div class="input-container">
+        <input type="text" [(ngModel)]="answer" name="answer" id="answer" (keyup.enter)="onSubmit()">
+        <button mat-raised-button (click)="onSubmit()">Arvaa</button>
+    </div>
+    <div class="input-container">
+        <button mat-raised-button *ngIf="!displayAnswer" (click)="displayAnswer = true">Näytä vastaus</button>
+        <button mat-raised-button *ngIf="displayAnswer" (click)="displayAnswer = false">Piilota vastaus</button>
+        &nbsp;
+        <button mat-raised-button (click)="getNextTerm(); errorCount = 0">Seuraava</button>
+    </div>
+
+    <div class="score-container">
+        <div class="score">Pisteet: {{ score }}</div>
+        <div class="error-count" *ngIf="errorCount > 0">Arvauksia: {{ errorCount }}</div>
+    </div>
+</div>
