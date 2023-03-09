@@ -20,7 +20,7 @@ export class KarateTermsService {
         { kanji: '逆半身', furigana: 'ぎゃくはんみ', romanji: 'gyaku-hamni', english: 'Reverse half-body', finnish: 'vastakkainen kylki, vastakkainen kylki edessä', audioFile: '10.mp3' },
         { kanji: '逆突き', furigana: 'ぎゃくづき', romanji: 'gyaku-zuki', english: 'reverse punch', finnish: 'gyaku-zuki, vastakäden lyönti', audioFile: '11.mp3' },
         { kanji: '八字立ち', furigana: 'はちじだち', romanji: 'hachijidachi', english: 'H stance', finnish: 'luonnollinen asento, valmiusasento', audioFile: '12.mp3' },
-        { kanji: '肘', furigana: 'はいわん', romanji: 'haiwan', english: 'Elbow', finnish: 'kyynärpää', audioFile: '13.mp3' },
+        { kanji: '肘', furigana: 'はいわん', romanji: 'haiwan', english: 'back-arm, back of foream', finnish: 'käsivarren yläpuoli', audioFile: '13.mp3' },
         { kanji: '半身', furigana: 'はんみ', romanji: 'hamni', english: 'Half-body', finnish: 'kylki, kylkiasento', audioFile: '14.mp3' },
         { kanji: '平行足立ち', furigana: 'へいこうあしだち', romanji: 'heisoku-dachi', english: 'Parallel stance', finnish: 'jalat yhdessä -asento', audioFile: '15.mp3' },
         { kanji: '左', furigana: 'ひだり', romanji: 'hidari', english: 'left', finnish: 'vasen', audioFile: '16.mp3' },
