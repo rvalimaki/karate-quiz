@@ -6,8 +6,8 @@
         <div class="romanji">{{ karateTerm.romanji }}</div>
 
         <div class="feedback-container" *ngIf="displayAnswer">
-                <span class="finnish">&nbsp;{{ karateTerm.finnish }}&nbsp;</span>
-                <span class="english">{{ karateTerm.english }}</span>
+            <span class="finnish">&nbsp;{{ karateTerm.finnish }}&nbsp;</span>
+            <span class="english">{{ karateTerm.english }}</span>
         </div>
 
         <audio controls [src]="'../../assets/audio/' + karateTerm.audioFile" autoplay>
@@ -26,7 +26,11 @@
     </div>
 
     <div class="score-container">
-        <div class="score">Pisteet: {{ score }}</div>
+        <div class="score">Pisteet: {{ score }}</div>    </div>
+    <div class="score-container">
         <div class="error-count" *ngIf="errorCount > 0">Arvauksia: {{ errorCount }}</div>
+    </div>
+    <div class="score-container">
+        <div class="score" *ngIf="previousAnswerCorrectness !== ''">Edellinen vastaus {{ previousAnswerCorrectness }} oikein</div>
     </div>
 </div>

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {KarateTerm} from '../models/karate-term.model';
 import {KarateTermsService} from '../services/karate-terms.service';
 
+let stringSimilarity = require("string-similarity");
+
 @Component({
     selector: 'app-karate-quiz',
     templateUrl: './karate-quiz.component.html',
@@ -14,6 +16,8 @@ export class KarateQuizComponent implements OnInit {
     score: number = 0;
 
     displayAnswer = false;
+
+    previousAnswerCorrectness = '';
 
     constructor(private karateTermsService: KarateTermsService) {
     }
@@ -36,7 +40,7 @@ export class KarateQuizComponent implements OnInit {
         } else {
             this.errorCount++;
 
-            if(this.errorCount >= 2) {
+            if (this.errorCount >= 2) {
                 this.displayAnswer = true;
             }
 
@@ -48,13 +52,24 @@ export class KarateQuizComponent implements OnInit {
         }
     }
 
+    trimAnswer(str: string) {
+        return str.toLowerCase().replace(/-/g, ' ').trim();
+    }
+
     checkAnswer(): boolean {
         if (this.karateTerm == null || this.answer == null) return false;
 
-        const userTranslationLower = this.answer.toLowerCase();
-        return userTranslationLower.length > 2 && (
-            this.karateTerm.english.toLowerCase().includes(userTranslationLower) ||
-            this.karateTerm.finnish.toLowerCase().includes(userTranslationLower)
-        );
+        const answer = this.trimAnswer(this.answer);
+
+        const possibleAnswers = this.karateTerm.english.split(',')
+            .concat(this.karateTerm.finnish.split(','))
+            .map(pa => this.trimAnswer(pa));
+
+        const similarities = possibleAnswers.map(pa => stringSimilarity.compareTwoStrings(answer, pa));
+
+        const bestMatch = Math.max(...similarities);
+        this.previousAnswerCorrectness = Math.round(bestMatch * 100) + '%';
+
+        return similarities.some(s => s > 0.75);
     }
 }
